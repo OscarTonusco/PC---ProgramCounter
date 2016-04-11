@@ -1,0 +1,39 @@
+----------------------------------------------------------------------------------
+-- Ingeniero:      OSCAR EDUARDO TONUSCO UTIMA
+-- Codigo:         1O90332961
+-- Institucion:    Universidad Tecnológica de Pereira
+-- Create Date:    23:20:11 10/04/2016 
+-- Design Name: 	 Program Counter para un procesador Sparc V8
+-- Module Name:    PC - ProgramCounter 
+-- Project Name: 	 Procesador Monociclo Sparc V8
+-- Revision 0.01 - File Created
+-- Additional Comments: Sin Comentarios
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+--entidad program counter
+entity PC is
+	port(
+		rst,clk : in std_logic;--reset y reloj de un bit
+		inst_in : in std_logic_vector(31 downto 0);
+		inst_out : out std_logic_vector(31 downto 0)
+	);
+end PC;
+
+architecture Behavioral of PC is
+	
+begin
+	process(clk)
+		begin
+			if rising_edge(clk) then
+				if rst='1' then
+					inst_out <= (others=>'0');--devuelve ceros a la salida
+				else 
+					inst_out <= inst_in;
+				end if;
+			end if;
+	end process;
+end Behavioral;
+
